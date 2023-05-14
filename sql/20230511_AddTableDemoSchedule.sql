@@ -1,0 +1,11 @@
+CREATE TABLE DemoSchedule (
+    id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    price INT NOT NULL,
+    description NVARCHAR(255) NOT NULL,
+    note NVARCHAR(255) NOT NULL,
+    locationId INT NOT NULL FOREIGN KEY REFERENCES Location(id),
+    accountId UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES Account(id),
+    dateStart DATE NOT NULL,
+    dateEnd DATE NOT NULL,
+    content NTEXT NOT NULL,
+);

@@ -1,0 +1,37 @@
+CREATE TABLE Schedule (
+    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    accountId UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES Account(id),
+    locationId INT NOT NULL FOREIGN KEY REFERENCES Location(id),
+    description NVARCHAR(255) NOT NULL,
+    note NVARCHAR(255) NOT NULL,
+    startTime DATETIME NOT NULL,
+    endTime DATETIME NOT NULL,
+    totalPrice INT NOT NULL,
+);
+
+CREATE TABLE SchedulePlace (
+    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    scheduleId INT NOT NULL FOREIGN KEY REFERENCES Schedule(id),
+    placeId INT NOT NULL FOREIGN KEY REFERENCES Place(id),
+    description NVARCHAR(255) NOT NULL,
+    note NVARCHAR(255) NOT NULL,
+    time DATETIME NOT NULL
+);
+
+CREATE TABLE ScheduleSeed (
+    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    locationId INT NOT NULL FOREIGN KEY REFERENCES Location(id),
+    description NVARCHAR(255) NOT NULL,
+    note NVARCHAR(255) NOT NULL,
+    noDays INT NOT NULL,
+    totalPrice INT NOT NULL,
+);
+
+CREATE TABLE ScheduleSeedPlace (
+    id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    scheduleSeedId INT NOT NULL FOREIGN KEY REFERENCES ScheduleSeed(id),
+    placeId INT NOT NULL FOREIGN KEY REFERENCES Place(id),
+    description NVARCHAR(255) NOT NULL,
+    note NVARCHAR(255) NOT NULL,
+    time TIME NOT NULL
+);
