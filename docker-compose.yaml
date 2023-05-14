@@ -1,0 +1,10 @@
+version: '3.1'
+services:
+  trippey:
+    image: trippey
+    build: .
+    ports:
+      - '3000:3000'
+    restart: always
+    volumes:
+      - ./uploads:/app/uploads
